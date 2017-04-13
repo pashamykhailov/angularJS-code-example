@@ -1,0 +1,285 @@
+<form novalidate name="addGame" ng-submit="addToFirebase()">
+    <!--<form novalidate name="addGame" ng-submit="addToFirebase()">-->
+    <div class="games-wrapper">
+        <div class="game-header-category">
+            <div class="game-header-category-title">
+                <div class="border-and-box-shadow games-title">games</div>
+                <div class="border-and-box-shadow rating-title">rating</div>
+                <div class="border-and-box-shadow">added</div>
+                <div class="border-and-box-shadow view-title">views</div>
+                <div class="border-and-box-shadow">downloads</div>
+            </div>
+            <div class="game-header-category-line border-and-box-shadow"></div>
+        </div>
+        <div class="game-header">
+            <div class="game-logo">
+                <div class="border-and-box-shadow icon-96x96">
+                    <img class="img-icon-96x96 logo-photos" ng-if="app.icon.url" ng-src="{{app.icon.url}}" alt="">
+                </div>
+                <div class="game-description">
+                    <h3>Game Name</h3>
+                    <span>game vendor</span>
+                    <span>game price</span>
+                </div>
+            </div>
+            <div class="game-rating">
+            <span>
+                <img src="http://www.clipartbest.com/cliparts/acq/oao/acqoaoqji.png" alt="">
+            </span>
+                <div class="game-rating-amount">
+                    <span class="border-and-box-shadow">{{app.starsAmount}}</span>
+                </div>
+            </div>
+            <div class="date-of-creating">
+                <div>
+                    <span>{{app.addition | date}}</span>
+                </div>
+                <img src="https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/calendar-128.png"
+                     alt="">
+            </div>
+            <div class="total-views">
+                <span class="border-and-box-shadow">{{app.views}}</span>
+            </div>
+            <div class="total-downloads">
+                <span class="border-and-box-shadow">{{app.downloads}}</span>
+            </div>
+        </div>
+        <div class="games-settings">
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">Name</h4>
+                <md-input-container class="md-icon-float md-block">
+                    <!-- Use floating label instead of placeholder -->
+                    <label>Name</label>
+                    <input ng-model="app.appName" type="text" capitalize-input-value ng-required="true" md-no-asterisk>
+                    <div ng-messages="{'required': !app.appName}">
+                        <div ng-message="required">Enter game name.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">App Id</h4>
+                <md-input-container class="md-icon-float md-block">
+                    <!-- Use floating label instead of placeholder -->
+                    <label>App ID</label>
+                    <input ng-model="app.appID.id" type="text" ng-required="true" md-no-asterisk>
+                    <div ng-messages="{'required': !app.appID.id}">
+                        <div ng-message="required">Enter app id.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">Icon(96x96)</h4>
+                <div layout="row">
+                    <div class="icon-96x96">
+                        <div class="hover-photo">
+                            <img class="img-icon-96x96 logo-photos" ng-if='app.icon.url' ng-src="{{app.icon.url}}"
+                                 alt=""
+                                 ng-click="deleteScopeVal('icon'); cleanUploadInput()">
+                        </div>
+                    </div>
+                    <md-input-container>
+                        <input aria-label="Choose image" type="file" accept="image/*" id="logo-icon"
+                               file-upload-single="fileUpload"
+                               file-single-url="app.icon"
+                               file-load-single ng-model="app.icon" valid-input-file ng-required="true">
+                        <div ng-messages="{'required': !app.icon}">
+                            <div ng-message="required">Choose image.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">Vendor</h4>
+                <md-input-container class="md-icon-float md-block">
+                    <!-- Use floating label instead of placeholder -->
+                    <label>Vendor</label>
+                    <input ng-model="app.appVendor" type="text" ng-required="true" md-no-asterisk>
+                    <div ng-messages="{'required': !app.appVendor}">
+                        <div ng-message="required">Enter vendor name.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">Type</h4>
+                <md-radio-group ng-model="app.type" ng-required="true">
+                    <md-radio-button value="game" class="md-fab">Game</md-radio-button>
+                    <md-radio-button value="app" class="md-fab">Application</md-radio-button>
+                </md-radio-group>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">Pricing</h4>
+                <md-radio-group ng-model="app.pricing" ng-required="true">
+                    <md-radio-button value="true" class="md-fab">free</md-radio-button>
+                    <md-radio-button value="false" class="md-fab">paid</md-radio-button>
+                </md-radio-group>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">Platform</h4>
+                <md-radio-group ng-model="app.platform" ng-required="true">
+                    <md-radio-button value="android" class="md-fab">android</md-radio-button>
+                    <md-radio-button value="ios" class="md-fab">ios</md-radio-button>
+                </md-radio-group>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">link to app</h4>
+                <md-input-container class="md-icon-float md-block">
+                    <!-- Use floating label instead of placeholder -->
+                    <label>Link to application</label>
+                    <input ng-model="app.appLink" type="text" ng-required="true" md-no-asterisk>
+                    <div ng-messages="{'required': !app.appLink}">
+                        <div ng-message="required">Enter link to application.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">Description</h4>
+                <md-input-container class="md-icon-float md-block">
+                    <label> Description</label>
+                    <textarea aria-label="description" name="description" ng-model="app.description"
+                              md-maxlength="2000" ng-required="true" md-no-asterisk></textarea>
+                    <div ng-messages="{'required': !app.description}">
+                        <div ng-message="required">Enter game description.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">photo</h4>
+                <div class="photo-container">
+                    <md-input-container>
+                        <input aria-label="uploadArray" id="multiply-icons" type="file" accept="image/*"
+                        ng-model="uploadArray" file-load-multiple
+                        multiple name="uploadArray" ng-required="true" ng-minlength="1">
+                        <div ng-messages="addGame.uploadArray.$error">
+                            <div ng-message="required">Select at least one image.</div>
+                            <div ng-message="minlength">Select at least one image.</div>
+                        </div>
+                    </md-input-container>
+                    <div class="photo-images">
+                        <div ng-repeat="imgSrc in uploadArray track by $index" ng-if="imgSrc.state == true"
+                             class="insert-photos">
+                            <img alt="image" ng-src="{{imgSrc.url}}"
+                                 ng-click="deleteArray($index); cleanUploadInputWithMultiplyIcons()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">video</h4>
+                <div class="video-container">
+                    <em>Type <strong>only video ID</strong> https://www.youtube.com/embed/<strong>ID</strong></em>
+                    <md-input-container class="md-icon-float md-block">
+                        <!-- Use floating label instead of placeholder -->
+                        <label>Video ID</label>
+                        <input ng-model="app.videoLink" type="text" ng-required="true" md-no-asterisk>
+                        <div ng-messages="{'required': !app.videoLink}">
+                            <div ng-message="required">Enter youtube video id.</div>
+                        </div>
+                    </md-input-container>
+                    <md-button ng-click="updateVideoLink()" class="md-raised">Show preview</md-button>
+                    <div ng-show="showVideoTrigger" class="video">
+                        <iframe width="420" height="315" ng-src="{{videoLinkWithSCE}}" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">categories</h4>
+                <category-select flex='40' created-category="app.newCategory"
+                                 category-type="app.type" required-state="true"></category-select>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">novelty</h4>
+                <md-radio-group ng-model="app.novelty" ng-required="true">
+                    <md-radio-button value="true" class="md-raised">yes</md-radio-button>
+                    <md-radio-button value="false" class="md-fab"> no</md-radio-button>
+                </md-radio-group>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">addition</h4>
+                <md-input-container class="md-icon-float md-block">
+                    <!-- Use floating label instead of placeholder -->
+                    <label>Addition date</label>
+                    <input ng-model="app.addition" type="date" ng-required="true" md-no-asterisk>
+                    <div ng-messages="{'required': !app.addition}">
+                        <div ng-message="required">Choose date please.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">size</h4>
+                <md-input-container class="md-icon-float md-block">
+                    <!-- Use floating label instead of placeholder -->
+                    <label>Size</label>
+                    <input ng-model="app.size" type="text" ng-required="true" md-no-asterisk>
+                    <div ng-messages="{'required': !app.size}">
+                        <div ng-message="required">Choose app size.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">rating</h4>
+                <div class="game-rating flex-row">
+                <span>
+                    <img src="http://www.clipartbest.com/cliparts/acq/oao/acqoaoqji.png" alt="">
+                </span>
+                    <div class="game-rating-amount">
+                        <span class="border-and-box-shadow">{{app.starsAmount}}</span>
+                    </div>
+                </div>
+                <md-input-container flex="20" class="stars">
+                    <label>Stars Amount</label>
+                    <md-select ng-model="app.starsCount" md-selected-text="getSelectedText()" ng-required="true">
+                        <md-optgroup label="stars">
+                            <md-option ng-value="item" ng-repeat="item in app.stars">{{item}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                    <div ng-messages="{'required': !app.starsCount}">
+                        <div ng-message="required">Rate app.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">enter to best</h4>
+                <md-radio-group ng-model="app.enterBest" ng-required="true">
+                    <md-radio-button value="true" class="md-raised">yes</md-radio-button>
+                    <md-radio-button value="false" class="md-fab"> no</md-radio-button>
+                </md-radio-group>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">version</h4>
+                <div layout="row" flex class="versions">
+                    <md-input-container class="md-icon-float md-block">
+                        <!-- Use floating label instead of placeholder -->
+                        <label>Min Version</label>
+                        <input ng-pattern="myPattern" ng-model="versionString" type="text"
+                               ng-blur="callMyMask(versionString)" ng-required="true" md-no-asterisk>
+                        <div ng-messages="{'pattern': !versionString}">
+                            <div ng-message="pattern">It should be 3 digits, each no longer that 3 chars and separated
+                                with dot '.'
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">views</h4>
+                <div class="total-views">
+                    <span class="border-and-box-shadow">{{app.views}}</span>
+                </div>
+            </div>
+            <div class="settings-item" layout="row" layout-align="start center">
+                <h4 class="h4-settings-title">downloads</h4>
+                <div class="total-downloads">
+                    <span class="border-and-box-shadow">{{app.downloads}}</span>
+                </div>
+            </div>
+            <div class="add-button" flex="100" align="center">
+                <md-button class="md-raised add-new-game border-and-box-shadow"
+                           type="submit">Add
+                </md-button>
+            </div>
+        </div>
+    </div>
+    <div class="loading-image" ng-class="loadingImage">
+        <img src="assets/images/ajax-loader.gif" alt="">
+    </div>
+</form>

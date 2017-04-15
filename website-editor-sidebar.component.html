@@ -1,0 +1,286 @@
+<div class="website-sidebar">
+  <div class="menu-part col-sm-3 active-menu" id="navbar">
+    <div class="theme-settings container border-button-transparent">
+      <div class="thematic-settings row align-items-center justify-content-between">
+        <div>
+          <a href="" class="nav-link">classic</a>
+        </div>
+        <div class="dash width-52"></div>
+        <div>
+          <a href="" class="nav-link active-word">modern</a>
+        </div>
+        <div class="dash width-52"></div>
+        <div>
+          <a href="" class="nav-link">minimal</a>
+        </div>
+      </div>
+      <div class="color-schema-settings row align-items-center justify-content-center">
+        <div>
+          <a href="" class="nav-link active-word">light theme</a>
+        </div>
+        <div class="dash width-16"></div>
+        <div>
+          <a href="" class="nav-link">dark theme</a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="fonts-settings border-button-transparent row justify-content-center align-items-center">
+        <div class="font-a-wrapper d-flex align-items-center">
+          <div class="font-a-1">
+            <a href="" class="active-word">A</a>
+          </div>
+          <div class="dash width-16"></div>
+          <div class="font-a-2">
+            <a href="">A</a>
+          </div>
+          <div class="dash width-16"></div>
+          <div class="font-a-3">
+            <a href="">A</a>
+          </div>
+        </div>
+        <div class="font-word">
+          <span class="nav-link">fonts</span>
+        </div>
+        <div class="font-b-wrapper d-flex align-items-center">
+          <div class="font-b-1">
+            <a href="">B</a></div>
+          <div class="dash width-16"></div>
+          <div class="font-b-2">
+            <a href="" class="active-word">B</a>
+          </div>
+          <div class="dash width-16"></div>
+          <div class="font-b-3">
+            <a href="">B</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="color-foreground-background">
+      <ul class="nav nav-tabs d-flex justify-content-center align-items-stretch" role="tablist">
+        <li class="nav-item flex-grow-1 d-flex flex-column">
+          <a class="nav-link active d-flex flex-grow-1 justify-content-center flex-column align-items-center"
+             data-toggle="tab" href="#color" role="tab">
+            <div class="colors-main d-flex box-shadow-default">
+              <div class="color-1"></div>
+              <div class="color-2"></div>
+              <div class="color-3"></div>
+              <div class="color-4"></div>
+            </div>
+            <div class="text-center">
+              <span>color palette</span>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item flex-grow-1 d-flex flex-column">
+          <a class="nav-link foreground justify-content-center flex-grow-1 d-flex align-items-center flex-column"
+             data-toggle="tab" href="#foreground"
+             role="tab">
+            <div>
+              <i class="material-font material-account-circle box-shadow-default" aria-hidden="true"></i>
+            </div>
+            <div>
+              <span>foreground</span>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item flex-grow-1 d-flex flex-column">
+          <a class="nav-link background justify-content-center d-flex flex-grow-1 align-items-center flex-column"
+             data-toggle="tab" href="#background" role="tab">
+            <div>
+              <i class="fa fa-upload" aria-hidden="true"></i>
+            </div>
+            <div>
+              <span>background</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="customizing-actions container d-flex justify-content-around align-items-center">
+        <div class="customizing-action-item d-flex align-items-center nav-link">
+          <i class="material-font material-replay"></i>
+          <span>revert changes</span>
+        </div>
+        <div class="customizing-action-item d-flex align-items-center nav-link">
+          <span>save and close</span>
+          <i class="material-font material-check"></i>
+        </div>
+      </div>
+
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="color" role="tabpanel">
+          <div class="color-palette-theme d-flex justify-content-center align-items-center">
+            <div>
+              <a href="" class="nav-link active-word">Monochromatic</a>
+            </div>
+            <div class="dash width-16"></div>
+            <div>
+              <a href="" class="nav-link">Composite</a>
+            </div>
+          </div>
+          <ul>
+            <li (click)="changePalette(palette)" *ngFor="let palette of palettes"
+                class="color-pallette-link d-flex align-items-center"
+                [class.active]="palette.id === configuration.themeConfiguration.paletteId">
+              <div class="colors d-flex box-shadow-default">
+                <div [style.background]="palette.color1" class="color-1"></div>
+                <div [style.background]="palette.color2" class="color-2"></div>
+                <div [style.background]="palette.color3" class="color-3"></div>
+                <div [style.background]="palette.color4" class="color-4"></div>
+              </div>
+              <div class="text-center color-palette-margin-left">
+                <span>Color {{palette.name}}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-pane foreground" id="foreground" role="tabpanel">
+          <div class="foreground-inner-wrapper d-flex flex-column align-items-center">
+            <div class="foreground-upload d-flex align-items-center justify-content-center">
+              <div class="d-flex flex-column align-items-center justify-content-center">
+                <i class="fa fa-upload" aria-hidden="true"></i>
+                <span>Upload picture</span>
+              </div>
+            </div>
+            <div class="foreground-shapes d-flex justify-content-between">
+              <div class="shape-1 d-flex justify-content-center align-items-center">
+                <svg width="46" height="46" viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg"><title>
+                  990A9BB1-FFB2-4531-8B41-B4A7189B3AC2</title>
+                  <path d="M23 45c12.15 0 22-9.85 22-22S35.15 1 23 1 1 10.85 1 23s9.85 22 22 22z" stroke="#050F14"
+                        fill="none" fill-rule="evenodd" stroke-opacity=".35" stroke-dasharray="7.677,3.839"/>
+                </svg>
+              </div>
+              <div class="shape-2 d-flex justify-content-center align-items-center">
+                <svg width="42" height="42" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg"><title>
+                  06FE8FC7-1EFF-4B2E-9423-D11A81CB53E5</title>
+                  <g stroke="#050F14" fill="none" fill-rule="evenodd" stroke-opacity=".35">
+                    <path d="M.942 5.094v-4h4"/>
+                    <path d="M9.514 1.094h25.143" stroke-dasharray="9.143000000000001,4.571"/>
+                    <path d="M36.942 1.094h4v4"/>
+                    <path d="M40.942 9.666v25.143" stroke-dasharray="9.143000000000001,4.571"/>
+                    <path d="M40.942 37.094v4h-4"/>
+                    <path d="M32.37 41.094H7.229" stroke-dasharray="9.143000000000001,4.571"/>
+                    <path d="M4.942 41.094h-4v-4"/>
+                    <path d="M.942 32.523V7.38" stroke-dasharray="9.143000000000001,4.571"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="shape-3 d-flex justify-content-center align-items-center">
+                <svg width="51" height="52" viewBox="0 0 51 52" xmlns="http://www.w3.org/2000/svg"><title>
+                  F471B086-E950-420D-9B71-F4CA945F6C3F</title>
+                  <g stroke="#050F14" fill="none" fill-rule="evenodd" stroke-opacity=".35">
+                    <path d="M3.213 28.687L.384 25.86l2.83-2.828"/>
+                    <path d="M5.534 20.71L21.395 4.849" stroke-dasharray="8.754,3.283"/>
+                    <path d="M22.556 3.687L25.384.86l2.83 2.828"/>
+                    <path d="M30.534 6.008L46.395 21.87" stroke-dasharray="8.754,3.283"/>
+                    <path d="M47.556 23.031l2.829 2.828-2.83 2.828"/>
+                    <path d="M45.235 31.009l-15.861 15.86" stroke-dasharray="8.754,3.283"/>
+                    <path d="M28.213 48.031l-2.829 2.828-2.828-2.828"/>
+                    <path d="M20.235 45.71L4.375 29.849" stroke-dasharray="8.754,3.283"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="shape-4 d-flex justify-content-center align-items-center">
+                <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><title>
+                  379B7607-C85D-4235-B71E-C362420F5920</title>
+                  <g stroke="#050F14" fill="none" fill-rule="evenodd" stroke-opacity=".35">
+                    <path d="M20.131 2.39L23.827.86l3.696 1.53"/>
+                    <path stroke-dasharray="7.773000000000001,3.887" d="M31.113 3.878l8.977 3.718 4.461 10.772"/>
+                    <path d="M45.296 20.164l1.531 3.695-1.53 3.696"/>
+                    <path stroke-dasharray="7.773000000000001,3.887" d="M43.809 31.145l-3.72 8.978-10.771 4.461"/>
+                    <path d="M27.523 45.328l-3.695 1.53-3.697-1.53"/>
+                    <path stroke-dasharray="7.773000000000001,3.887" d="M16.54 43.84l-8.977-3.718-4.46-10.771"/>
+                    <path d="M2.358 27.554L.828 23.86l1.53-3.696"/>
+                    <path stroke-dasharray="7.773000000000001,3.887" d="M3.845 16.573l3.719-8.978 10.772-4.461"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="shape-5 d-flex justify-content-center align-items-center">
+                <svg width="53" height="53" viewBox="0 0 53 53" xmlns="http://www.w3.org/2000/svg"><title>
+                  F611AB7A-A447-4751-9686-D2514ECA5139</title>
+                  <g stroke="#050F14" fill="none" fill-rule="evenodd" stroke-opacity=".35">
+                    <path
+                        d="M24.524 3.299l1.745-2.44 1.746 2.44M29.592 5.502l1.746 2.439L34.07 6.7M36.537 5.582l2.731-1.24.293 2.986M39.825 10.025l.292 2.985 2.986.292M45.8 13.567l2.986.292-1.24 2.731M46.427 19.058l-1.24 2.731 2.439 1.747M49.83 25.113l2.438 1.746-2.439 1.746M47.626 30.182l-2.439 1.746 1.24 2.732M47.546 37.128l1.24 2.73-2.986.293M43.104 40.416l-2.986.292-.292 2.985M39.562 46.39l-.293 2.985-2.731-1.239M34.07 47.016l-2.732-1.239-1.747 2.44M28.015 50.42l-1.746 2.439-1.745-2.44M22.947 48.217l-1.746-2.44-2.733 1.24M16.001 48.136l-2.732 1.24-.292-2.986M12.713 43.693l-.292-2.985-2.986-.292M6.739 40.151l-2.986-.292 1.24-2.73M6.112 34.66l1.24-2.731-2.44-1.747M2.71 28.605L.27 26.86l2.44-1.746M4.912 23.536l2.44-1.746-1.24-2.732M4.992 16.59l-1.24-2.73 2.986-.292M9.435 13.302l2.986-.292.292-2.985M12.977 7.328l.292-2.985L16 5.582M18.468 6.702L21.2 7.94l1.747-2.44"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <div class="foreground-drop-shadow nav-link">
+              <div>
+                <i class="material-font material-check" aria-hidden="true"></i>
+                <span>drop shadow</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane background" id="background" role="tabpanel">
+          <div class="background-inner-wrapper d-flex flex-column align-items-center">
+            <div class="background-upload flex-column d-flex align-items-center justify-content-center">
+              <div class="background-upload-img d-flex flex-column align-items-center justify-content-center">
+                <i class="fa fa-upload" aria-hidden="true"></i>
+                <span>Upload picture</span>
+              </div>
+              <div class="background-theme d-flex align-items-center justify-content-center">
+                <div class="nav-link"><a href="">darken</a></div>
+                <div class="dash width-16"></div>
+                <div class="nav-link"><a href="">lighten</a></div>
+                <div class="dash width-16"></div>
+                <div class="nav-link"><a href="">vintage</a></div>
+                <div class="dash width-16"></div>
+                <div class="nav-link"><a href="">b&w</a></div>
+              </div>
+            </div>
+
+            <div class="background-style d-flex flex-column align-items-center">
+              <div class="background-style-landscape nav-link">
+                <!--landscape & locations-->
+              </div>
+              <div class="background-style-textures nav-link">
+                <!--textures-->
+              </div>
+              <div class="background-style-gradient-colors nav-link">
+                <!--gradients & colors-->
+              </div>
+              <div class="background-style-pattern nav-link">
+                <!--subtle pattern-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="default-menu">
+      <ul>
+        <li>
+          <div class="nav-link d-flex align-items-center" (click)="myCollapse(i)">
+            <i class="fa fa-angle-down"></i>
+            <span>menu</span>
+          </div>
+          <div *ngIf="expandedTrigger[i]">
+            <div class="list-group">
+              <button type="button"
+                      class="list-group-item feature-button"
+                      (click)="showPagesManager()">Edit pages</button>
+            </div>
+          </div>
+        </li>
+        <li *ngFor="let item of menu; let i = index;">
+          <div class="nav-link d-flex align-items-center" (click)="myCollapse(i)">
+            <i class="fa fa-angle-down"></i>
+            <span>{{item.name}}</span>
+          </div>
+          <div *ngIf="expandedTrigger[i]">
+            <div class="list-group">
+              <button type="button"
+                      class="list-group-item feature-button"
+                      *ngFor="let feature of item.features" (click)="choose(feature.value)">{{feature.name}}</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
